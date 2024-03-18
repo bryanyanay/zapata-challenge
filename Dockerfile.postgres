@@ -1,0 +1,9 @@
+FROM postgres:latest
+
+ENV POSTGRES_PASSWORD=supersecret
+ENV POSTGRES_DB=stock_db
+
+COPY tsla_2014_2023.csv /tsla_2014_2023.csv
+COPY init.sql /docker-entrypoint-initdb.d/init.sql
+
+EXPOSE 5432

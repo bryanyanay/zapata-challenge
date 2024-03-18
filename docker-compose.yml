@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    image: query-postgres
+    container_name: query-postgres-db
+    ports:
+      - "5400:5432"
