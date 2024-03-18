@@ -3,6 +3,9 @@ Zapata AI challenge! Translate text to SQL query to then execute against a postg
 
 # Notes
 
+. venv/Scripts/activate
+uvicorn query-api:app --host 0.0.0.0 --port 8000
+
  - may want to use user that is limited to read (suggested by the model card)
  - must predownload the model when dockerizing it
  - may wanna rework the venv to not include everything we didn't use
