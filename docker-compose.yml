@@ -9,6 +9,8 @@ services:
     container_name: query-postgres-container
     ports:
       - "5400:5432"
+    networks:
+      - query-network
 
   fastapi:
     build:
@@ -25,6 +27,8 @@ services:
       - DB_PASSWORD=supersecret
     env_file:
       - .env.defog
+    networks:
+      - query-network
 
 networks:
   query-network:
