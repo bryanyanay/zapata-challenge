@@ -11,6 +11,8 @@ Where XXX is my api key. I will send the key in the email in which I send the li
 
 After that just clone the repo and do a `docker compose up --build`. This should build the images from the Dockerfiles, then start the postgres and fastapi containers from these images (the postgres database automatically populates with the csv file on startup).
 
+To stop everything just go Ctrl+C, and to destroy everything just go `docker compose down`.
+
 ## Testing the app
 The fastapi container is listening on port 8000, which is also mapped to port 8000 on the host. The `query-test.py` script can be used to contact localhost:8000 and send questions. 
 
