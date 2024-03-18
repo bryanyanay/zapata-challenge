@@ -6,6 +6,27 @@ services:
       context: .
       dockerfile: Dockerfile.postgres
     image: query-postgres
-    container_name: query-postgres-db
+    container_name: query-postgres-container
     ports:
       - "5400:5432"
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    image: query-fastapi
+    container_name: query-fastapi-container
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=query-postgres-container
+      - DB_PORT=5432
+      - DB_NAME=stock_db
+      - DB_PASSWORD=supersecret
+    env_file:
+      - .env.defog
+
+networks:
+  query-network:
+    name: query-network
+    driver: bridge

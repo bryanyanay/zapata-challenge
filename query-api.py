@@ -20,9 +20,9 @@ async def query(reqJSON: Question):
     api_key = os.getenv("DEFOG_API_KEY"),
     db_type = "postgres",
     db_creds = {
-      "host": "localhost",
-      "port": 5432, 
-      "database": "test_db",
+      "host": os.getenv("DB_HOST"),
+      "port": os.getenv("DB_PORT"), 
+      "database": os.getenv("DB_NAME"),
       "user": "postgres",
       "password": os.getenv("DB_PASSWORD")
     }
