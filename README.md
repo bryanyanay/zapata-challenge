@@ -1,73 +1,26 @@
-# zapata-challenge
-Zapata AI challenge! Translate text to SQL query to then execute against a postgres database, and dockerize it all.
+# Zapata AI challenge! 
+Translate text to SQL query to then execute against a postgres database, and dockerize it all.
 
-# Notes
+# Running the app
 
-. venv/Scripts/activate
-uvicorn query-api:app --host 0.0.0.0 --port 8000
+**IMPORTANT:** First you must obtain my defog api key. Create a file called `.env.defog` in the root directory of this repo, and put this line in it:
+```
+DEFOG_API_KEY = XXX
+```
+Where XXX is my api key. I will send the key in the email in which I send the link to this repo. I'm on defog's free tier, which means 1000 free requests per month.
 
- - may want to use user that is limited to read (suggested by the model card)
- - must predownload the model when dockerizing it
- - may wanna rework the venv to not include everything we didn't use
- - had to separately install pandas for defog init
- - if we change the db we gotta rerun defog init i believe
+After that just clone the repo and do a `docker compose up --build`. This should build the images from the Dockerfiles, then start the postgres and fastapi containers from these images.
 
+## Testing the app
+The fastapi container is listening on port 8000, which is also mapped to port 8000 on the host. The `query-test.py` script can be used to contact localhost:8000 and send questions. 
 
-rakeshkiriyath/gpt2Medium_text_to_sql
-cssupport/t5-small-awesome-text-to-sql
+First, `pip install requests tabulate` if you don't already have these modules. Do so in a virtual environment if you'd like.
 
+Then just go `python query-test.py`.
 
-Given a table with this schema:
+## Manually viewing the database
 
-CREATE TABLE stock_data (
-    date DATE PRIMARY KEY,
-    open NUMERIC,
-    high NUMERIC,
-    low NUMERIC,
-    close NUMERIC,
-    volume BIGINT,
-    rsi_7 NUMERIC,
-    rsi_14 NUMERIC,
-    cci_7 NUMERIC,
-    cci_14 NUMERIC,
-    sma_50 NUMERIC,
-    ema_50 NUMERIC,
-    sma_100 NUMERIC,
-    ema_100 NUMERIC,
-    macd NUMERIC,
-    bollinger NUMERIC,
-    TrueRange NUMERIC,
-    atr_7 NUMERIC,
-    atr_14 NUMERIC,
-    next_day_close NUMERIC
-)
+The fastapi container hits up the postgres container through a docker network, but the postgres container also maps the port it's listening on to host port 5400. 
 
-Write a valid postgreSQL query to answer this question: What's the opening price of the stock on December 29 2023?
+So you can connect to localhost:5400 using a tool like pgAdmin to view the database directly (e.g., to check that what the app is returning is correct). Default user is `postgres` with password `supersecret`.
 
-Below are sql tables schemas paired with instruction that describes a task. 
-Using valid postgreSQL, write a response that appropriately completes the request for the provided tables. 
-### Instruction: What's the opening price of the stock on December 29 2023?
-### Database: test_db
-### Input: 
-CREATE TABLE stock_data (
-    date DATE PRIMARY KEY,
-    open NUMERIC,
-    high NUMERIC,
-    low NUMERIC,
-    close NUMERIC,
-    volume BIGINT,
-    rsi_7 NUMERIC,
-    rsi_14 NUMERIC,
-    cci_7 NUMERIC,
-    cci_14 NUMERIC,
-    sma_50 NUMERIC,
-    ema_50 NUMERIC,
-    sma_100 NUMERIC,
-    ema_100 NUMERIC,
-    macd NUMERIC,
-    bollinger NUMERIC,
-    TrueRange NUMERIC,
-    atr_7 NUMERIC,
-    atr_14 NUMERIC,
-    next_day_close NUMERIC
-)

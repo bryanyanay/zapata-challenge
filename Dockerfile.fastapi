@@ -6,6 +6,7 @@ RUN pip install fastapi
 RUN pip install 'uvicorn[standard]'
 RUN pip install python-dotenv
 RUN pip install 'defog[postgres]'
+
 # defog requires pandas even though it doesn't install it as a dependency?
 RUN pip install pandas 
 
