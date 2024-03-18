@@ -6,6 +6,8 @@ Zapata AI challenge! Translate text to SQL query to then execute against a postg
  - may want to use user that is limited to read (suggested by the model card)
  - must predownload the model when dockerizing it
  - may wanna rework the venv to not include everything we didn't use
+ - had to separately install pandas for defog init
+ - if we change the db we gotta rerun defog init i believe
 
 
 rakeshkiriyath/gpt2Medium_text_to_sql

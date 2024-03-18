@@ -1,0 +1,21 @@
+column_name,data_type,column_description,table_name
+date,date,Date of the stock data,stock_data
+open,numeric,Opening price of the stock,stock_data
+high,numeric,Highest price of the stock during the day,stock_data
+low,numeric,Lowest price of the stock during the day,stock_data
+close,numeric,Closing price of the stock,stock_data
+volume,bigint,Volume of stocks traded,stock_data
+rsi_7,numeric,Relative Strength Index calculated over a 7-day period,stock_data
+rsi_14,numeric,Relative Strength Index calculated over a 14-day period,stock_data
+cci_7,numeric,Commodity Channel Index calculated over a 7-day period,stock_data
+cci_14,numeric,Commodity Channel Index calculated over a 14-day period,stock_data
+sma_50,numeric,50-day Simple Moving Average,stock_data
+ema_50,numeric,50-day Exponential Moving Average,stock_data
+sma_100,numeric,100-day Simple Moving Average,stock_data
+ema_100,numeric,100-day Exponential Moving Average,stock_data
+macd,numeric,Moving Average Convergence Divergence,stock_data
+bollinger,numeric,Bollinger Bands indicator,stock_data
+truerange,numeric,True Range indicator,stock_data
+atr_7,numeric,Average True Range calculated over a 7-day period,stock_data
+atr_14,numeric,Average True Range calculated over a 14-day period,stock_data
+next_day_close,numeric,Closing price of the stock for the next trading day,stock_data
