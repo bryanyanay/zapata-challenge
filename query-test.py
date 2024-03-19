@@ -27,9 +27,13 @@ while True:
       print(tabulate(resJSON["data"], headers=resJSON["columns"]))
     else:
       print(">>> QUERY NOT SUCCESSFUL")
-      print(">>> ATTEMPTED QUERY:")
-      print(resJSON["attempted_query"])
-      print(">>> FULL INFO:")
-      print(resJSON["full_info"])
+      if (resJSON["error_message"]):
+        print(">>> ERROR FROM DEFOG")
+        print(resJSON["error_message"])
+      else:
+        print(">>> ATTEMPTED QUERY:")
+        print(resJSON["attempted_query"])
+        print(">>> FULL INFO:")
+        print(resJSON["full_info"])
   else:
     print(f"Error: {response.status_code} - {response.text}")

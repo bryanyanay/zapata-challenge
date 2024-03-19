@@ -3,13 +3,13 @@ Translate text to SQL query to then execute against a postgres database, and doc
 
 # Running the app
 
-**IMPORTANT:** First you must obtain my defog api key. Create a file called `.env.defog` in the root directory of this repo, and put this line in it:
+**IMPORTANT:** After cloning the repo, you must first obtain my defog api key. Create a file called `.env.defog` in the root directory of this repo, and put this line in it:
 ```
 DEFOG_API_KEY = XXX
 ```
 Where XXX is my api key. I will send the key in the email in which I send the link to this repo. I'm on defog's free tier, which means 1000 free requests per month.
 
-After that just clone the repo and do a `docker compose up --build`. This should build the images from the Dockerfiles, then start the postgres and fastapi containers from these images (the postgres database automatically populates with the csv file on startup).
+Then just do a `docker compose up --build` in the root of the project. This should build the images from the Dockerfiles, then start the postgres and fastapi containers from these images (the postgres database automatically populates with the csv file on startup).
 
 To stop everything just go Ctrl+C, and to destroy everything just go `docker compose down`.
 
@@ -35,4 +35,11 @@ So you can connect to localhost:5400 using a tool like pgAdmin to view the datab
 
 # Notes
 
+### "Sorry :( Our server is at capacity right now"
+
+"Sorry :( Our server is at capacity right now and we are unable to process your query. Please try again in a few minutes?" is an error I've gotten from defog; I use their api to translate text to sql, and sometimes they just can't. 
+
+I guess in that case just try again in a few minutes like they say? :(
+
+### Contact
 You can contact me at `bryan.yan@mail.utoronto.ca` if you have questions about the app or need the defog api key.

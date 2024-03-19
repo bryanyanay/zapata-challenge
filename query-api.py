@@ -36,8 +36,11 @@ async def query(reqJSON: Question):
       "ran_successfully": True
     }
   else:
-    return {
-      "ran_successfully": False,
-      "attempted_query": results["query_generated"],
-      "full_info": results
-    }
+    if (results["error_message"]): # if defog sends back an eerror message (not when SQL isn't right, but when they can't even generate the SQL for some reason)
+      return results
+    else:
+      return {
+        "ran_successfully": False,
+        "attempted_query": results["query_generated"],
+        "full_info": results
+      }
