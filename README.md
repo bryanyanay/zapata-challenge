@@ -37,7 +37,7 @@ So you can connect to localhost:5400 using a tool like pgAdmin to view the datab
 
 ### "Sorry :( Our server is at capacity right now"
 
-"Sorry :( Our server is at capacity right now and we are unable to process your query. Please try again in a few minutes?" is an error I've gotten from defog; I use their api to translate text to sql, and sometimes they just can't. 
+`Sorry :( Our server is at capacity right now and we are unable to process your query. Please try again in a few minutes?` is an error I've gotten from defog; I use their api to translate text to sql, and sometimes they just can't. 
 
 I guess in that case just try again in a few minutes like they say? :(
 
